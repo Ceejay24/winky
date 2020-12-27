@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Firebase stuff
+
+functions/package.json
+functions/package-lock.json
+firebase.json
