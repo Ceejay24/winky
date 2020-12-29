@@ -133,3 +133,7 @@ dmypy.json
 functions/package.json
 functions/package-lock.json
 firebase.json
+dbschema.js
+
+functions/utils/config.js
+
