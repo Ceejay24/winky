@@ -136,4 +136,6 @@ firebase.json
 dbschema.js
 
 functions/utils/config.js
-
+winkyapp/package-lock.json
+winkyapp/package.json
+winkyapp/.eslintcache

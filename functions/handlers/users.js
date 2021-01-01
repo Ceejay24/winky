@@ -89,17 +89,36 @@ exports.login = (request, response) => {
             return response.json({token});
         })
         .catch(err => {
-            console.error(error);
+            console.error(err);
             if(err.code === 'auth/wrong-password') {
                 return response
                     .status(403)
                     .json({ general: 'Wrong credentials, please try again' });
+            } 
+            if(err.code === 'auth/user-not-found') {
+              return response
+                  .status(403)
+                  .json({ general: 'Wrong credentials, please try again' });
             } else return response.status(500).json({ error: err.code});
         });
 }
 
 // Add user details
-exports.addUserDetails = (request, response) => {
+exports.addUserDetails = (req, res) => {
+  let userDetails = reduceUserDetails(req.body);
+
+  db.doc(`/users/${req.user.handle}`)
+    .update(userDetails)
+    .then(() => {
+      return res.json({ message: "Details added successfully" });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
+    });
+};
+// Add user details
+exports.getUserDetails = (request, response) => {
     let userData = {};
     db.doc(`/users/${request.params.handle}`)
       .get()

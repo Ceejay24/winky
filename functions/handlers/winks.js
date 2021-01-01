@@ -10,11 +10,13 @@ exports.getAllWinks = (request, response) => {
          let winks = [];
          data.forEach((document) => {
             winks.push({
-             winkId: document.id,
-             body: document.data().body,
-             userHandle: document.data().userHandle,
-             createdAt: document.data().createdAt
-         });
+            winkId: document.id,
+            body: document.data().body,
+            userHandle: document.data().userHandle,
+            createdAt: document.data().createdAt,
+            likeCount: document.data().likeCount,
+            userImage: document.data().userImage
+          });
         });
          return response.json(winks);
      })
@@ -47,6 +49,7 @@ exports.postOneWink = (request, response) => {
         console.error(err);
     });
 }
+
 
 // Fetch one wink
 exports.getWink = (request, response) => {
