@@ -117,7 +117,7 @@ exports.addUserDetails = (req, res) => {
       return res.status(500).json({ error: err.code });
     });
 };
-// Add user details
+// Get user details
 exports.getUserDetails = (request, response) => {
     let userData = {};
     db.doc(`/users/${request.params.handle}`)
@@ -126,7 +126,7 @@ exports.getUserDetails = (request, response) => {
         if (doc.exists) {
           userData.user = doc.data();
           return db
-            .collection("screams")
+            .collection("winks")
             .where("userHandle", "==", request.params.handle)
             .orderBy("createdAt", "desc")
             .get();
@@ -154,7 +154,7 @@ exports.getUserDetails = (request, response) => {
         return response.status(500).json({ error: err.code });
       });
   };
-// Get own user details
+// Get own details
 exports.getAuthenticatedUser = (request, response) => {
     let userData = {};
     db.doc(`/users/${request.user.handle}`)
